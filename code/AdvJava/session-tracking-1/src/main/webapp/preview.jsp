@@ -33,9 +33,21 @@
 		<h3>Passing Year : <%= year %> </h3>
 		<h3>Percentage : <%= percent %> </h3>
 		
-		<h1><a href="#">Save & Continue</a></h1>
+		<h1><a href="save-emp-dtl?name=<%=name%>&email=<%=email%>&contact=<%=contact%>&title=<%=title%>&year=<%=year%>&percent=<%=percent%>">Save & Continue</a></h1>
 		
 	</div>
 	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
