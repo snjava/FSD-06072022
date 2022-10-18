@@ -3,6 +3,9 @@ package todo.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import todo.bean.TaskBean;
 
@@ -26,6 +29,53 @@ public class ToDoModel {
 		}
 		 
 		return result;
+	}
+
+	public List<TaskBean> getAll() {
+		ArrayList<TaskBean> list = new ArrayList<TaskBean>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fsd6july","root","root");
+			PreparedStatement stmt = con.prepareStatement("select * from task");
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				TaskBean bean = new TaskBean();
+					bean.setId(rs.getInt("id"));
+					bean.setTitle(rs.getString("title"));
+					bean.setStatus(rs.getString("status"));
+					bean.setScheduledOn(rs.getString("scheduledOn"));
+					bean.setUpdatedOn(rs.getString("updatedOn"));
+				list.add(bean);
+			}
+			con.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public TaskBean getTaskById(int id) {
+		TaskBean bean = new TaskBean();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fsd6july","root","root");
+			PreparedStatement stmt = con.prepareStatement("select * from task where id=?");
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				bean.setId(rs.getInt("id"));
+				bean.setTitle(rs.getString("title"));
+				bean.setStatus(rs.getString("status"));
+				bean.setScheduledOn(rs.getString("scheduledOn"));
+				bean.setUpdatedOn(rs.getString("updatedOn"));
+			}
+			con.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bean;
 	}
 	
 }
