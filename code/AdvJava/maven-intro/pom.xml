@@ -9,6 +9,7 @@
 	<artifactId>maven-intro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>maven-intro</name>
+	<packaging>jar</packaging>
 
 	<properties>
 		<maven.compiler.source>11</maven.compiler.source>
@@ -16,8 +17,8 @@
 	</properties>
 
 	<dependencies>
-	
-	
+
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -30,6 +31,13 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.30</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.0.0.Final</version>
+		</dependency>
+
 
 
 	</dependencies>
