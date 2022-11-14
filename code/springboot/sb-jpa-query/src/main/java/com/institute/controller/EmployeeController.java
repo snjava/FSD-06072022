@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +41,14 @@ public class EmployeeController {
 		//employeeRepository.updateEmpCityHql(city, id);
 		employeeRepository.updateEmpCitySql(city, id);
 		CustomResponse response = new CustomResponse(203, "Employee City has been updated...");
+		return response;
+	}
+	
+	
+	@GetMapping("/get-by-city/{ct}")
+	public CustomResponse getEmpByCity(@PathVariable("ct") String city) {
+		List<Employee> empList = employeeRepository.getEmpByCity(city);
+		CustomResponse response = new CustomResponse(200, empList, "List of Employee from City " + city);
 		return response;
 	}
 	

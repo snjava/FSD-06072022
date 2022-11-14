@@ -1,5 +1,7 @@
 package com.institute.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,9 +19,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	@Query(value = "Update Employee set city= :ct where id= :id")
 	public void updateEmpCityHql(@Param("ct") String city, @Param("id") int id);
 	
-	
 	@Transactional
 	@Modifying
 	@Query(value = "Update empinfo set city= :ct where empid= :id", nativeQuery = true)
 	public void updateEmpCitySql(@Param("ct") String city, @Param("id") int id);
+	
+	@Query(value = "Select emp from Employee emp where emp.city= :ct")
+	public List<Employee> getEmpByCity(@Param("ct") String city);
 }
