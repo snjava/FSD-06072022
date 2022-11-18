@@ -1,8 +1,8 @@
 package com.institute.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -15,12 +15,13 @@ public class Product {
 	private int id;
 	private String name;
 	private double price;
+	@Column(name = "pqty")
 	private int quantity;
 	private boolean status;
 	@CreationTimestamp // use to insert the creation date time as a System DateTime while inserting Data into DB
 	private LocalDateTime createdt;
 	@UpdateTimestamp // use this to get the updated time stamp while inserting and updating the record.
-	private LocalDate updatedDate;
+	private LocalDateTime updatedDate;
 	
 	
 	public int getId() {
@@ -59,10 +60,10 @@ public class Product {
 	public void setCreatedt(LocalDateTime createdt) {
 		this.createdt = createdt;
 	}
-	public LocalDate getUpdatedDate() {
+	public void setUpdatedDate(LocalDateTime updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+	public LocalDateTime getUpdatedDate() {
 		return updatedDate;
 	}
-	public void setUpdatedDate(LocalDate updatedDate) {
-		this.updatedDate = updatedDate;
-	} 
 }

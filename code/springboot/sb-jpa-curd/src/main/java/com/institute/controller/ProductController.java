@@ -49,4 +49,10 @@ public class ProductController {
 		return "Record Deleted Successfully";
 	}
 	
+	@PutMapping("/update-qty/{qty}/{id}")
+	public String updateQty(@PathVariable int qty, @PathVariable int id) {
+		repository.updateQuantity(qty,id);
+		return "Record Updated Successfully...";
+	}
+	
 }
